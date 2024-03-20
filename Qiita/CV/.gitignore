@@ -1,2 +1,4 @@
 .env
+env.py
 /images/
+/__pycache__/

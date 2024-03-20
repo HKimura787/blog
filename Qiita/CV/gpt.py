@@ -1,12 +1,17 @@
+import env
 from openai import OpenAI
-client = OpenAI()
+client = OpenAI(api_key=env.api_key)
 
 completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
-        {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
-        {"role": "user", "content": "Compose a poem that explains the concept of recursion in programming."}
-    ]
+        {"role": "system", "content": "あなたは優秀な科学者です。次の質問に回答してください。"},
+        {"role": "user", "content": "宇宙の始まりはどのようにして始まったのですか？"},
+        {"role": "assistant", "content": "宇宙の始まりに関する理論として広く受け入れられているのは、「ビッグバン理論」です。ビッグバン理論によれば、宇宙は約137億年前に一点に集中した高温高密度の状態から膨張を始め、現在のような広がりを持つ宇宙が形成されました。\n\nこの一点に集中した状態を「特異点」と呼び、ビッグバンによって宇宙が膨張し始めた瞬間から時間と空間が誕生したとされています。ビッグバン理論は、宇宙全体の膨張や宇宙マイクロ波背景放射などの観測データと一致しているため、広く支持されています。\n\nただし、ビッグバン理論が宇宙の始まりの全てを説明できるわけではなく、さらに"},
+        {"role": "user", "content": "続けて"},
+        # さらに、ビッグバン理論は宇宙の膨張や進化を十分に説明することができるものの、特異点の前の状態やビッグバンの正確な原因については未だに完全に解明されていません。現在でも、宇宙の始まりや初期状態に関する研究は続けられており、異なる仮説や理論も提唱されています。\n\n例えば、超弦理論や量子重力理論などの新しい物理学の枠組みを使用して、ビッグバンの前の状態や特異点を説明しようとする研究が進められています。また、宇宙の膨張に影響を与えるダークエネルギーやダークマターなどの謎にも迫る研究が進行しています。\n\n宇宙の始まり
+    ],
+    max_tokens=300
 )
 
 print(completion.choices[0].message)   
