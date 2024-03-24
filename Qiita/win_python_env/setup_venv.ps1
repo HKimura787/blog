@@ -17,5 +17,4 @@ catch {
 }
 
 & $VENV_PATH\Scripts\python.exe -m pip install --upgrade pip
-# & $VENV_PATH\Scripts\pip.exe install --upgrade pip
 & $VENV_PATH\Scripts\pip.exe install -r requirements.txt
