@@ -1,0 +1,23 @@
+{
+	"name": "yolo_server", //VSCodeで表示されるDEVコンテナ名
+	"dockerComposeFile": ["./docker-compose.yml"],
+	"service": "yolo",
+	"forwardPorts": [3050, 12345], //コンテナからホストに転送するポートリスト
+	"workspaceFolder": "/app", //VSCodeで開くコンテナ内のディレクトリ
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"mechatroner.rainbow-csv",
+				"mhutchie.git-graph",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"VisualStudioExptTeam.intellicode-api-usage-examples",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"ms-toolsai.jupyter",
+				"cweijan.vscode-office"
+				]
+		}
+	}
+}

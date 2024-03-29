@@ -1,0 +1,27 @@
+version: '1'
+services:
+  yolo:
+    build: ./Python
+    shm_size: '4gb'
+    ports:
+      - 12345:8888
+      - 3050:3000
+    entrypoint:  
+      jupyter-lab
+      --allow-root
+      --ip=0.0.0.0
+      --port=8888
+      --no-browser
+      --NotebookApp.token=''
+      --notebook-dir=/
+    volumes:
+      - ../:/app # ホストのディレクトリをコンテナのappディレクトリにマウント
+    tty: true
+    stdin_open: true  
+    deploy: # GPUを使う場合
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

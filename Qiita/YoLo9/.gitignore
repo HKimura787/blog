@@ -1,3 +1,6 @@
 /src_img/*
 qiita.md
 /Animal_Detector/*
+/Animal_Detector_v2/*
+*.jpg
+.dockerenv
