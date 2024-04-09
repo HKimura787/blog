@@ -33,7 +33,7 @@ def animate(frame):
     # 個体の移動
     # ランダムな方向と距離を決める
     angle = random.uniform(0, 2 * math.pi)
-    distance = random.uniform(0, 1)
+    distance = random.uniform(0, 1.5)
     
     # 新しい位置を計算
     new_x = positions[0][0] + distance * math.cos(angle)
@@ -56,3 +56,4 @@ def animate(frame):
 ani = animation.FuncAnimation(fig, animate, frames=num_steps, interval=50, blit=True)
 
 plt.show()
+
