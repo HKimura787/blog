@@ -76,5 +76,5 @@ def animate(frame):
 
 # アニメーションを作成 
 ani = animation.FuncAnimation(fig, animate, frames=num_steps, interval=50, blit=True,)
-ani.save('mcmc.mp4', writer='ffmpeg', fps=30, dpi=100)
+# ani.save('mcmc.mp4', writer='ffmpeg', fps=30, dpi=100)
 plt.show()
