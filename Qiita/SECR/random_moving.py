@@ -10,14 +10,14 @@ class random_moving:
         center_y (float): 中心点のy座標
         target_variance (float): 目的分布の分散
         proposal_range (float): 提案分布の範囲
-        moving_range (float): 移動範囲の半径
+        start_range (float): 初期位置のランダム配置範囲
     """
-    def __init__(self, center_x:float, center_y:float, target_variance:float = 5, proposal_range:float = 5, moving_range:float = 10) -> None:
+    def __init__(self, center_x:float, center_y:float, target_variance:float = 5, proposal_range:float = 5, start_range:float = 10) -> None:
         self.center_x = center_x
         self.center_y = center_y
         self.target_variance = target_variance
         self.proposal_range = proposal_range
-        self.moving_range = moving_range
+        self.start_range = start_range
         return None
 
     def __normal_pdf(self, x:float, y:float, mean_x:float, mean_y:float, variance:float) -> float:
@@ -47,8 +47,8 @@ class random_moving:
             list: 移動後の位置のリスト
         """
         # 個体の初期位置
-        positions_x = random.uniform(-self.moving_range, self.moving_range)
-        positions_y = random.uniform(-self.moving_range, self.moving_range)
+        positions_x = random.uniform(-self.start_range, self.start_range)
+        positions_y = random.uniform(-self.start_range, self.start_range)
         
         # 移動後の位置を格納するリスト
         positions_x_list = []
