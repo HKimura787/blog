@@ -30,16 +30,29 @@ class sample:
         Returns:
             Tuple[List[float], List[float]]: サンプリング座標の一定の範囲内の点
         """
-        sample_x = []
-        sample_y = []
-        for x in x_list:
-            for y in y_list:
-                for x_point in self.x_points:
-                    for y_point in self.y_points:
-                        if distance.euclidean([x, y], [x_point, y_point]) <= self.range:
-                            # print(x, y, x_point, y_point)
-                            sample_x.append(x)
-                            sample_y.append(y)
+        tuple_xy = [[x, y] for x in x_list for y in y_list]
+        sampling_points = [[x_point, y_point] for x_point in self.x_points for y_point in self.y_points]
+
+        # 総当たりで距離を計算
+        xx, yy = np.meshgrid(tuple_xy, sampling_points)
+        distances = np.linalg.norm(xx - yy, axis=2)
+        distances_diag = np.fill_diagonal(distances, np.nan)
+
+        # 距離が範囲内の点を取得
+        filter = distances <= self.range
+        distances_sample = distances_diag[filter]
+        return distances_sample
+
+        # sample_x = []
+        # sample_y = []
+        # for x in x_list:
+        #     for y in y_list:
+        #         for x_point in self.x_points:
+        #             for y_point in self.y_points:
+        #                 if distance.euclidean([x, y], [x_point, y_point]) <= self.range:
+        #                     # print(x, y, x_point, y_point)
+        #                     sample_x.append(x)
+        #                     sample_y.append(y)
         return sample_x, sample_y
 
     def plot_sampling_point(self, ax:plt.subplot=None, color='black', size:int=5) -> None:
