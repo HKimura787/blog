@@ -30,17 +30,18 @@ class sample:
         Returns:
             Tuple[List[float], List[float]]: サンプリング座標の一定の範囲内の点
         """
-        tuple_xy = [[x, y] for x in x_list for y in y_list]
-        sampling_points = [[x_point, y_point] for x_point in self.x_points for y_point in self.y_points]
+        tuple_xy = np.array([[x, y] for x in x_list for y in y_list])
+        sampling_points = np.array([[x_point, y_point] for x_point in self.x_points for y_point in self.y_points])
+        sample_index = np.arange(sampling_points.shape[0])
 
         # 総当たりで距離を計算
-        xx, yy = np.meshgrid(tuple_xy, sampling_points)
-        distances = np.linalg.norm(xx - yy, axis=2)
-        distances_diag = np.fill_diagonal(distances, np.nan)
+        xx, yy = np.meshgrid(sample_index, sample_index)
+        distances = np.linalg.norm(sampling_points[xx] - sampling_points[yy], axis=2)
 
         # 距離が範囲内の点を取得
-        filter = distances <= self.range
-        distances_sample = distances_diag[filter]
+        filter_ = distances <= self.range
+        filter_diag = np.fill_diagonal(filter_, np.nan)
+        distances_sample = distances[filter_diag]
         return distances_sample
 
         # sample_x = []
